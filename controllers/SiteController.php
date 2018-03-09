@@ -100,12 +100,6 @@ class SiteController extends Controller
                         ]);      
                 }
                 else{
-                    /*$this->actionCreate();
-                    return $this->render('identitas', [
-                        'model' => $model,
-                    ]);*/
-
-                    //$this->action->successUrl = Url::to(['signup']);
                     return $this->redirect('./profil');
                 }
                 }
@@ -136,109 +130,6 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
-    }
-     /**
-     * Succes Callback
-     *
-     * @return string
-     */
-    public function successCallback($client)
-    {
-        //memanggil method untuk menyimpan data dari sosial media
-        $attributes=$this->safeAttributes($client); 
-
-        //untuk mengecek apakah data sosial media sudah ada didalam database
-
-        $member_sosial_media =MemberSosialMedia::find()
-            ->where([
-                    'sosial_media'=>$attributes['sosial_media'],
-                    'id'=>(string)$attributes['id'],
-                    'username'=>$attributes['username'],
-                ])  
-                ->one();
-
-            //jika data ditemukan
-            if($member_sosial_media){
-                //jika pengguna sudah aktif maka
-                $member=$member_sosial_media->member;
-
-                if($member->status==member::STATUS_ACTIVE){
-                    //melakukan login otomatis
-                    Yii::$app->user->login($member);
-                }
-                else{
-                    Yii::$app->session->setFlash('error','Login gagal, status user tidak aktif');
-                    //selesai
-                }
-            }
-
-            else{
-                //jika data tidak ditemukan 
-                //dilakukan pengecekan data email di tabel member
-                $member= Member::find()
-                ->where([
-                    'email'=>$attributes['email']
-                    ])
-                ->one();
-                //jika data ditemukan 
-                if($member){
-                    //mengecek apakan member aktif
-                    if($member->status==Member::STATUS_ACTIVE){
-                        //menambahkan data ke tabel member sosial media
-                        $member_sosial_media=new MemberSosialMedia ([
-                                'sosial_media'=>$attributes['sosial_media'],
-                                'id'=>(string)$attributes['id'],
-                                'username'=>$attributes['username'],
-                                'member_id'=>$member->id,
-                            ]);
-                        $member_sosial_media->save();
-
-                        //melakukan otomatis login
-                        Yii::$app->user->login($member);
-                    }
-                    else{
-                        Yii::$app->session->setFlash('Error','Login Gagal Status User tidak aktif');
-                    }
-                }
-                else{
-                    // //cek apakah sosial media yang digunakan untuk login bukan twitter
-
-                    // if($attributes['sosial_media']!='twitter'){
-                    //     //laukan login otomatis
-                    //     $password= Yii::$app->security->generateRandomString(6);
-                    //     $member= new Member([
-                    //         'username'=>$attributes['username'],
-                    //         'email'=>$attributes['email'],
-                    //         'password'=>$password,
-                    //         ])
-                    //     $member->generateAuthKey();
-                    //     $member->generatePasswordResetToken();
-                    //     if($member->save()){
-                    //         $member_sosial_media= new MemberSosialMedia([
-                    //                 'sosial_media'=>$attributes['sosial_media'],
-                    //                 'id'=>(string)$attributes['id'],
-                    //                 'username'=>$attributes['username'],
-                    //                 'member_id'=>$member->id,
-                    //             ]);
-                    //         $member_sosial_media->save();
-                    //         //melakukan login otomatis
-                    //         Yii::$app\user\login($member);
-                    //     }
-                    //     else{
-                    //         Yii::$app->session->setFlash('error','Login gagal, terdapat kesalahan saat registrasi');
-                    //     }
-                    // }
-                    // else{
-                    //     //save data attribute to session
-                    //     $session=Yii::$app->session;
-                    //     $session['attributes']=$attributes;
-
-                    //     //redirect ke signup
-                    //     $this->action->successUrl = Url::to(['signup']);
-                    // }
-                }
-
-            }
     }
 
     public function safeAttributes($client)
@@ -287,19 +178,6 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays contact page.
-     *
-     * @return string
-     */
-    public function actionContact()
-    {
-        
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
      * Displays about page.
      *
      * @return string
@@ -307,8 +185,14 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    
     }
-         public function actionSignup()
+    /**
+     * Signs user up.
+     *
+     * @return mixed
+     */
+    public function actionSignup()
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
@@ -323,6 +207,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
         /**
      * Requests password reset.
      *
@@ -370,27 +255,6 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
-    }
-
-        public function actionKomentar(){
-        $model = new \app\models\Komentar();
-
-        //jika form di submit dengan action post
-
-        if(Yii::$app->request->post()){
-            $model->load(Yii::$app->request->post());
-            if ($model->validate()){
-                Yii::$app->session->setFlash('success','Terima Kasih ');
-            }
-            else{
-                Yii:$app->session->setFlash('error','Maaf, Ada yang salah');
-            }
-            return $this->render('hasil_komentar',['model'=>$model,]);
-        }
-        else{
-            return $this->render('komentar',['model'=>$model]);
-        }
-
     }
 
 

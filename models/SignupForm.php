@@ -1,6 +1,5 @@
 <?php
 namespace app\models;
-
 use yii\base\Model;
 use app\models\Member;
 
@@ -44,7 +43,7 @@ class SignupForm extends Model
      public function attributeLabels()
     {
         return [
-            'password_repeat'=>'ulangi password',
+            'password_repeat'=>'repeat password',
         ];
     }
 
