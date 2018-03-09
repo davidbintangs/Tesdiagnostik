@@ -66,9 +66,16 @@ $config = [
             'enablePrettyUrl'=> true,
             'class' => 'yii\web\UrlManager',
             'showScriptName'=>false,
-             'rules' => array(
-                    'transaction/getrequestdetail/<id>' => 'transaction/getrequestdetail',),
-        ],
+             'rules' => [
+                    // '<alias:index|signup|login>' => 'site/<alias>',
+                    // '<alias:login|logout|register>' => 'account/<alias>',
+                    '/<action:\w+>/<id:\d+>' => 'site/<action>',
+                    '/<action:\w+>' => 'site/<action>',
+                    '/noticia/<slug>' => 'site/noticia',
+                    '<action:(.*)>' => 'site/<action>',
+        
+                ],
+            ],
 
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
