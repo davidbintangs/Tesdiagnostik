@@ -19,7 +19,7 @@ class MemberSearch extends Member
     {
         return [
             [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'email', 'auth_key', 'password_hash', 'password_reset_token'], 'safe'],
+            [['username', 'email', 'auth_key', 'password_hash', 'password_reset_token', 'first_name', 'last_name', 'school', 'gender', 'address', 'phone', 'photo'], 'safe'],
         ];
     }
 
@@ -69,7 +69,14 @@ class MemberSearch extends Member
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'auth_key', $this->auth_key])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
-            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token]);
+            ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
+            ->andFilterWhere(['like', 'first_name', $this->first_name])
+            ->andFilterWhere(['like', 'last_name', $this->last_name])
+            ->andFilterWhere(['like', 'school', $this->school])
+            ->andFilterWhere(['like', 'gender', $this->gender])
+            ->andFilterWhere(['like', 'address', $this->address])
+            ->andFilterWhere(['like', 'phone', $this->phone])
+            ->andFilterWhere(['like', 'photo', $this->photo]);
 
         return $dataProvider;
     }

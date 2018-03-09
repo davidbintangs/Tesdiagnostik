@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Member */
+/* @var $model app\models\Answer */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Members'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Answers'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="member-view">
+<div class="answer-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -29,21 +29,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'id',
-            'username',
-            'email:email',
-            'auth_key',
-            'password_hash',
-            'password_reset_token',
+            'date',
+            'grade',
             'status',
-            'created_at',
-            'updated_at',
-            'first_name',
-            'last_name',
-            'school',
-            'gender',
-            'address',
-            'phone',
-            'photo',
+            'asnwer_question:ntext',
+            'answer_confidence1:ntext',
+            'answer_reason:ntext',
+            'answer_confidence2',
+            'understand',
+            'not_understand_concept',
+            'misconceptions',
+            'error',
+            'number_understand',
+            'number_not_understand_concept',
+            'number_misconceptions',
+            'number_error',
+            'test',
+            'member',
         ],
     ]) ?>
 

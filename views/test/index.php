@@ -4,19 +4,19 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\MemberSearch */
+/* @var $searchModel app\models\TestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Members');
+$this->title = Yii::t('app', 'Tests');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="member-index">
+<div class="test-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Create Member'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('app', 'Create Test'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>    <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -25,21 +25,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
-            'username',
-            'email:email',
-            'auth_key',
-            'password_hash',
-            // 'password_reset_token',
-            // 'status',
-            // 'created_at',
-            // 'updated_at',
-            // 'first_name',
-            // 'last_name',
-            // 'school',
-            // 'gender',
-            // 'address',
-            // 'phone',
-            // 'photo',
+            'test_name',
+            'description:ntext',
+            'note',
+            'minimum_grade',
+            // 'time:datetime',
+            // 'member',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
