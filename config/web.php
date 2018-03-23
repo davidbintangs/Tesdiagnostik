@@ -67,15 +67,23 @@ $config = [
             'class' => 'yii\web\UrlManager',
             'showScriptName'=>false,
              'rules' => [
-                    // '<alias:index|signup|login>' => 'site/<alias>',
-                    // '<alias:login|logout|register>' => 'account/<alias>',
-                    '/<action:\w+>/<id:\d+>' => 'site/<action>',
-                    '/<action:\w+>' => 'site/<action>',
-                    '/noticia/<slug>' => 'site/noticia',
-                    '<action:(.*)>' => 'site/<action>',
+                    '<alias:index|signup|login>' => 'site/<alias>',
+                    '<alias:login|logout|register>' => 'account/<alias>',
+                    // '/<action:\w+>/<id:\d+>' => 'site/<action>',
+                    // '/<action:\w+>' => 'site/<action>',
+                    // '/noticia/<slug>' => 'site/noticia',
+                    // '<action:(.*)>' => 'site/<action>',
         
                 ],
             ],
+        // 'urlManager' => [
+        //     'baseUrl' => $baseUrl,
+        //     'enablePrettyUrl'=> true,
+        //     'class' => 'yii\web\UrlManager',
+        //     'showScriptName'=>false,
+        //      'rules' => array(
+        //             'transaction/getrequestdetail/<id>' => 'transaction/getrequestdetail',),
+        // ],
 
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -87,6 +95,11 @@ $config = [
         'user' => [
             'class' => 'app\components\User',
             'identityClass' => 'app\models\Member',
+            'enableAutoLogin' => true,
+        ],
+        'admin' => [
+            'class' => 'app\components\Admin',
+            'identityClass' => 'app\models\Admin',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [

@@ -60,7 +60,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
-    	if (!Yii::$app->user->isGuest) {
+    	if (!Yii::$app->admin->isGuest) {
     		$this->layout="main";
             return $this->dashboard();
         }
@@ -78,6 +78,14 @@ class DefaultController extends Controller
 
     public function dashboard(){
     	return $this->render('dashboard');
+    }
+      
+
+    public function actionLogout()
+    {
+        Yii::$app->admin->logout();
+
+        return $this->redirect('login');
     }
 
 

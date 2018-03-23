@@ -28,40 +28,15 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
 
-         <ul class="nav navbar-nav"> 
-            <li><a href="<?php echo Url::to(['portofolio/index']); ?>">Portofolio</a></li>
+          <ul class="nav navbar-nav"> 
+            <li><a href="<?php echo Url::to(['Test/index']); ?>">Test</a></li>
           </ul>
 
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Rekrut <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="<?php echo Url::to(['proyek/create']); ?>">Buat proyek</a></li>
-                <li><a href="<?php echo Url::to(['freelance/index']); ?>">Telusuri Freelancer</a></li>
-              </ul>
-            </li>
+          <ul class="nav navbar-nav"> 
+            <li><a href="<?php echo Url::to(['Create/index']); ?>">Crete Test</a></li>
           </ul>
 
-          <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Proyek <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="<?php echo Url::to(['proyek/index']); ?>">Semua Proyek</a></li>
-                <li><a href="<?php echo Url::to(['proyek/proyek-keahlian']); ?>">sesuai keahlian</a></li>
-              </ul>
-            </li>
-          </ul>
-
-           <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="<?php echo Url::to(['proyek/proyek-saya']); ?>">Proyek Saya</a>
-            </li>
-          </ul>
-            <ul class="nav navbar-nav">
-            <li class="dropdown">
-              <a href="<?php echo Url::to(['proyek/pekerjaan-saya']); ?>">Pekerjaan Saya</a>
-            </li>
-          </ul>
+         
 
         </div>
         <!-- /.navbar-collapse -->

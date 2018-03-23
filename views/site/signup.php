@@ -6,7 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
+//use yii\captcha\Captcha;
 use kartik\password\PasswordInput;
 
 $this->title = 'Signup';
@@ -31,10 +31,10 @@ $this->title = 'Signup';
                 <?php /*= $form->field($model, 'password_repeat')->widget(
                         PasswordInput::classname());*/ ?>
 
-                <?= $form->field($model, 'reCaptcha')->widget(
+                <?php /*$form->field($model, 'reCaptcha')->widget(
                         \himiklab\yii2\recaptcha\ReCaptcha::className(),
                         ['siteKey' => '6LcT6ygUAAAAAPWANN-ZC2lMf5yc47vzbq93C9vk']
-                    ) ?>
+                    )*/ ?>
                     
                     <div class="form-group">
                     <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>

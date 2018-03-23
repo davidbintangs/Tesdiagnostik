@@ -12,12 +12,7 @@ use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
 use app\models\ContactForm;
-use app\models\MemberSosialMedia;
 use app\models\Member;
-use app\models\Identitas;
-use app\models\Proyek;
-use app\models\ProyekSearch;
-
 
 class SiteController extends Controller
 {
@@ -34,7 +29,7 @@ class SiteController extends Controller
                     [
                         'actions'=>['login','signup','error',],
                         'allow'=>true,
-                        //'roles'=>['?']
+                        
                     ],
                     [
                         'actions' => ['logout','index'],
@@ -81,17 +76,11 @@ class SiteController extends Controller
      {
         if (!\Yii::$app->user->isGuest)
         {
-                $proyek = new Proyek();
-
-                //$this->layout ="main";
-                $model= new Identitas();
+                $model= new Member();
                 $id=$model->getId();
-                $searchProyek = new ProyekSearch();
-                $params =Yii::$app->request->queryParams;
-                $kondisi= null;
-                $dataProyek = $searchProyek->search($params, $kondisi);
-
-                if (!empty($id)){
+                $name=$model->findIdentity($id);
+                //check atrribute first_name 
+                if (!empty($name)){
                     $this->layout="main";
                     return $this->render('index',[
                         'proyek'=> '$proyek',
@@ -100,7 +89,8 @@ class SiteController extends Controller
                         ]);      
                 }
                 else{
-                    return $this->redirect('./profil');
+                    return $this->redirect('./profile');
+                    
                 }
                 }
         else
