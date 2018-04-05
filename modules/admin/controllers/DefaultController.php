@@ -11,12 +11,7 @@ use app\models\AdminForm;
 use app\models\PasswordResetRequestForm;
 use app\models\ResetPasswordForm;
 use app\models\SignupForm;
-
-use app\models\MemberSosialMedia;
 use app\models\Member;
-use app\models\Identitas;
-use app\models\Proyek;
-use app\models\ProyekSearch;
 
 
 /**
@@ -48,7 +43,7 @@ class DefaultController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    //'logout' => ['post'],
                 ],
             ],
         ];
@@ -70,7 +65,7 @@ class DefaultController extends Controller
         	$this->layout="main";
             return $this->dashboard();
         }
-         //$this->layout="main";
+         $this->layout="main";
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -83,9 +78,11 @@ class DefaultController extends Controller
 
     public function actionLogout()
     {
-        Yii::$app->admin->logout();
-
-        return $this->redirect('login');
+        // Yii::$app->admin->logout();
+        // $this->layout="main";
+        // return $this->render('inde', [
+        //     'model' => $model,
+        // ]);
     }
 
 

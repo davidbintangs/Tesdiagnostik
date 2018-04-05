@@ -1,15 +1,24 @@
 <?php
-use yii\helpers\Html;
-use yii\helpers\Url;
+    use yii\helpers\Html;
+    use yii\bootstrap\Nav;
+    use yii\bootstrap\NavBar;
+    use yii\widgets\Breadcrumbs;
+    use app\assets\DashboardAsset;
+    use app\assets\AppAsset;
 
-/* @var $this \yii\web\View */
-/* @var $content string */
-?>
+    use \yii\helpers\Url;
+
+  
+    dmstr\web\AdminLteAsset::register($this);
+    ?>  
+        
+
+<!-- calling header for guest -->
 
 <header class="main-header">
-  <?php $kreatifkita =Url::base().'/dist/img/kreatifkita.png';
+    <?php $kreatifkita =Url::base().'/dist/img/kreatifkita.png';
         $logo =Url::base().'/dist/img/logo1.png';
-   ?>
+     ?>
 
 
 
@@ -266,12 +275,16 @@ use yii\helpers\Url;
                         <!-- Menu Footer-->
                         <li class="user-footer">
                             <div class="pull-left">
-                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            <?= Html::a(
+                                    'keahlian',
+                                    ['./keahlian'],
+                                    ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
+                                ) ?>
                             </div>
                             <div class="pull-right">
                                 <?= Html::a(
                                     'Sign out',
-                                    ['logout'],
+                                    ['default/logout'],
                                     ['data-method' => 'post', 'class' => 'btn btn-default btn-flat']
                                 ) ?>
                             </div>

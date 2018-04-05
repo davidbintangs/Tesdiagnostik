@@ -1,31 +1,14 @@
 <?php
 use yii\helpers\Html;
+use app\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-
-if (Yii::$app->controller->action->id === 'login') { 
-/**
- * Do not use this code in your template. Remove it. 
- * Instead, use the code  $this->layout = '//main-login'; in your controller.
- */
-    echo $this->render(
-        'main-login',
-        ['content' => $content]
-    );
-} else {
-
-    if (class_exists('backend\assets\AppAsset')) {
-        backend\assets\AppAsset::register($this);
-    } else {
-        app\assets\AppAsset::register($this);
-    }
-
-    dmstr\web\AdminLteAsset::register($this);
-
-    $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');
+    AppAsset::register($this);
+    $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@web/');
     ?>
+    
     <?php $this->beginPage() ?>
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
@@ -36,19 +19,40 @@ if (Yii::$app->controller->action->id === 'login') {
         <title><?= Html::encode($this->title) ?></title>
         <?php $this->head() ?>
     </head>
-    <body class="hold-transition skin-black sidebar-mini fixed">
-    <?php $this->beginBody() ?>
-    <div class="wrapper">
+            <!-- calling header for admin -->
+        <?php 
+        if (Yii::$app->admin->isGuest) {?>
+            <<body class="hold-transition skin-black layout-top-nav">
+            <?php $this->beginBody() ?>
+            <div class="wrapper">
+            <?php
+            }
+        else{ 
+          ?>
+            <body class="hold-transition skin-black sidebar-mini fixed">
+            <?php $this->beginBody() ?>
+            <div class="wrapper">
+              <!-- calling header for admin -->
+              <?php
+            }
+        ?>
 
-        <?= $this->render(
-            'header.php',
-            ['directoryAsset' => $directoryAsset]
-        ) ?>
 
-        <?= $this->render(
-            'left.php',
-            ['directoryAsset' => $directoryAsset]
-        )
+        <?php 
+          if (Yii::$app->admin->isGuest) {?>
+              <?= $this->render(
+                  'headerUser.php',
+                  ['directoryAsset' => $directoryAsset]
+              );
+             
+          }
+          else{ 
+          ?>
+              <?= $this->render(
+                  'header.php',
+                  ['directoryAsset' => $directoryAsset]
+              );
+          }
         ?>
 
         <?= $this->render(
@@ -62,4 +66,3 @@ if (Yii::$app->controller->action->id === 'login') {
     </body>
     </html>
     <?php $this->endPage() ?>
-<?php } ?>
